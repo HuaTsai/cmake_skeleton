@@ -23,7 +23,7 @@ jobs:
         ninja: true
 
     - name: Install Google Test
-      run: sudo apt-get install -y libgtest-dev
+      run: sudo apt install -y libgtest-dev
 
     - name: Configure CMake
       run: |
