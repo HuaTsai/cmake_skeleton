@@ -1,0 +1,33 @@
+name: Build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup C++ environment
+      uses: aminya/setup-cpp@v1
+      with:
+        compiler: gcc-14
+        cmake: true
+        clang-format: true
+        clang-tidy: true
+        ninja: true
+
+    - name: Configure CMake
+      run: |
+        cmake -B build -G Ninja -DENABLE_CLANG_TIDY=ON
+
+    - name: Build
+      run: cmake --build build -j$(nproc)
+
+    - name: Run tests
+      run: ctest --test-dir build --output-on-failure
