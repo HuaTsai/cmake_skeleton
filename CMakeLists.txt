@@ -3,6 +3,7 @@ project(
   myproject
   VERSION 1.0.0
   DESCRIPTION "A C++ project skeleton with CMake"
+  HOMEPAGE_URL "https://github.com/HuaTsai/cmake_skeleton"
   LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 20)
@@ -132,12 +133,19 @@ set(CPACK_GENERATOR "DEB;TGZ")
 set(CPACK_PACKAGE_NAME "${PROJECT_NAME}")
 set(CPACK_PACKAGE_VERSION "${PROJECT_VERSION}")
 set(CPACK_PACKAGE_CONTACT "HuaTsai <huatsai42@gmail.com>")
-set(CPACK_PACKAGE_MAINTAINER "HuaTsai")
-set(CPACK_PACKAGE_VENDOR "HuaTsai")
-set(CPACK_DEBIAN_PACKAGE_DEPENDS "libc6, libstdc++6")
-set(CPACK_PACKAGE_DESCRIPTION ${PROJECT_DESCRIPTION})
+set(CPACK_PACKAGE_HOMEPAGE_URL "${PROJECT_HOMEPAGE_URL}")
+set(CPACK_PACKAGE_FILE_NAME "${PROJECT_NAME}-${PROJECT_VERSION}-${CMAKE_SYSTEM_PROCESSOR}")
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY ${PROJECT_DESCRIPTION})
+set(CPACK_PACKAGE_DESCRIPTION
+"A comprehensive C++ project template featuring CMake build system, \
+unit testing with GTest, code formatting with clang-format, \
+static analysis with clang-tidy, and packaging support")
+
+set(CPACK_DEBIAN_PACKAGE_MAINTAINER "HuaTsai <huatsai42@gmail.com>")
+set(CPACK_DEBIAN_PACKAGE_HOMEPAGE "${PROJECT_HOMEPAGE_URL}")
 set(CPACK_DEBIAN_PACKAGE_SECTION "devel")
+set(CPACK_DEBIAN_PACKAGE_PRIORITY "optional") # most common priority
+set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
 
 include(CPack) # include after all variables are set
 
